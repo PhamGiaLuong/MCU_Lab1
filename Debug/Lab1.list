@@ -107,18 +107,19 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
  800015a:	f000 f861 	bl	8000220 <MX_GPIO_Init>
-  /* USER CODE BEGIN 2 */
-  	  int state = 3;
- 800015e:	2303      	movs	r3, #3
- 8000160:	607b      	str	r3, [r7, #4]
-  	  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
- 8000162:	2201      	movs	r2, #1
- 8000164:	2120      	movs	r1, #32
- 8000166:	480f      	ldr	r0, [pc, #60]	; (80001a4 <main+0x58>)
- 8000168:	f000 fbfc 	bl	8000964 <HAL_GPIO_WritePin>
+
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int state = 3;
+ 800015e:	2303      	movs	r3, #3
+ 8000160:	607b      	str	r3, [r7, #4]
+  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+ 8000162:	2201      	movs	r2, #1
+ 8000164:	2140      	movs	r1, #64	; 0x40
+ 8000166:	480f      	ldr	r0, [pc, #60]	; (80001a4 <main+0x58>)
+ 8000168:	f000 fbfc 	bl	8000964 <HAL_GPIO_WritePin>
   while (1)
   {
 	  if (state == 1 || state < 0){
@@ -137,11 +138,11 @@ int main(void)
  8000182:	4808      	ldr	r0, [pc, #32]	; (80001a4 <main+0x58>)
  8000184:	f000 fc06 	bl	8000994 <HAL_GPIO_TogglePin>
 	  }
-	  if (state < 0) state = 4;
+	  if (state < 0) state = 3;
  8000188:	687b      	ldr	r3, [r7, #4]
  800018a:	2b00      	cmp	r3, #0
  800018c:	da01      	bge.n	8000192 <main+0x46>
- 800018e:	2304      	movs	r3, #4
+ 800018e:	2303      	movs	r3, #3
  8000190:	607b      	str	r3, [r7, #4]
 	  state--;
  8000192:	687b      	ldr	r3, [r7, #4]
