@@ -171,8 +171,60 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int state = 0;
   while (1)
   {
+	  	int counter = 5;
+		HAL_GPIO_WritePin(GPIOA, H_Red_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, H_Green_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, H_Yellow_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, V_Red_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, V_Green_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOA, V_Yellow_Pin, GPIO_PIN_RESET);
+		display7SEG(counter--);
+	  switch (state) {
+			case 0:
+				//Horizontal Red light
+				HAL_GPIO_TogglePin(GPIOA, H_Red_Pin);
+				//Vertical Green light
+				HAL_GPIO_TogglePin(GPIOA, V_Green_Pin);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				//Vertical Yellow light
+				HAL_GPIO_TogglePin(GPIOA, V_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOA, V_Yellow_Pin);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				state = 1;
+				break;
+			default:
+				//Vertical Red light
+				HAL_GPIO_TogglePin(GPIOA, V_Red_Pin);
+				//Horizontal Green light
+				HAL_GPIO_TogglePin(GPIOA, H_Green_Pin);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				//Horizontal Yellow light
+				HAL_GPIO_TogglePin(GPIOA, H_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOA, H_Yellow_Pin);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				HAL_Delay(1000);
+				display7SEG(counter--);
+				state = 0;
+				break;
+	  }
+	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
