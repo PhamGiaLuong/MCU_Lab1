@@ -92,12 +92,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int state = 3;
-  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin, GPIO_PIN_SET);
   while (1)
   {
 	  if (state == 1 || state < 0){
-		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+		  HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin);
+		  HAL_GPIO_TogglePin(GPIOA, LED_YELLOW_Pin);
 	  }
 	  if (state < 0) state = 3;
 	  state--;
