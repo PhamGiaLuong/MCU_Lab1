@@ -94,34 +94,48 @@ int main(void)
   int state = 0;
   while (1)
   {
-		HAL_GPIO_WritePin(GPIOA, H_Red_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOA, H_Green_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOA, H_Yellow_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOA, V_Red_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOA, V_Green_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOA, V_Yellow_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, T_Red_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, T_Green_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, T_Yellow_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, B_Red_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, B_Green_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, B_Yellow_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, L_Red_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, L_Green_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, L_Yellow_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, R_Red_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, R_Green_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, R_Yellow_Pin, GPIO_PIN_RESET);
 	  switch (state) {
 			case 0:
 				//Horizontal Red light
-				HAL_GPIO_TogglePin(GPIOA, H_Red_Pin);
+				HAL_GPIO_TogglePin(GPIOB, T_Red_Pin);
+				HAL_GPIO_TogglePin(GPIOB, B_Red_Pin);
 				//Vertical Green light
-				HAL_GPIO_TogglePin(GPIOA, V_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, L_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, R_Green_Pin);
 				HAL_Delay(3000);
 				//Vertical Yellow light
-				HAL_GPIO_TogglePin(GPIOA, V_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOA, V_Yellow_Pin);
+				HAL_GPIO_TogglePin(GPIOB, L_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, R_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, L_Yellow_Pin);
+				HAL_GPIO_TogglePin(GPIOB, R_Yellow_Pin);
 				HAL_Delay(2000);
 				state = 1;
 				break;
 			default:
 				//Vertical Red light
-				HAL_GPIO_TogglePin(GPIOA, V_Red_Pin);
+				HAL_GPIO_TogglePin(GPIOB, L_Red_Pin);
+				HAL_GPIO_TogglePin(GPIOB, R_Red_Pin);
 				//Horizontal Green light
-				HAL_GPIO_TogglePin(GPIOA, H_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, T_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, B_Green_Pin);
 				HAL_Delay(3000);
 				//Horizontal Yellow light
-				HAL_GPIO_TogglePin(GPIOA, H_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOA, H_Yellow_Pin);
+				HAL_GPIO_TogglePin(GPIOB, T_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, B_Green_Pin);
+				HAL_GPIO_TogglePin(GPIOB, T_Yellow_Pin);
+				HAL_GPIO_TogglePin(GPIOB, B_Yellow_Pin);
 				HAL_Delay(2000);
 				state = 0;
 				break;
@@ -178,20 +192,23 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, H_Red_Pin|H_Green_Pin|H_Yellow_Pin|V_Red_Pin
-                          |V_Green_Pin|V_Yellow_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, T_Red_Pin|T_Green_Pin|T_Yellow_Pin|R_Green_Pin
+                          |R_Yellow_Pin|B_Red_Pin|B_Green_Pin|B_Yellow_Pin
+                          |L_Red_Pin|L_Green_Pin|L_Yellow_Pin|R_Red_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : H_Red_Pin H_Green_Pin H_Yellow_Pin V_Red_Pin
-                           V_Green_Pin V_Yellow_Pin */
-  GPIO_InitStruct.Pin = H_Red_Pin|H_Green_Pin|H_Yellow_Pin|V_Red_Pin
-                          |V_Green_Pin|V_Yellow_Pin;
+  /*Configure GPIO pins : T_Red_Pin T_Green_Pin T_Yellow_Pin R_Green_Pin
+                           R_Yellow_Pin B_Red_Pin B_Green_Pin B_Yellow_Pin
+                           L_Red_Pin L_Green_Pin L_Yellow_Pin R_Red_Pin */
+  GPIO_InitStruct.Pin = T_Red_Pin|T_Green_Pin|T_Yellow_Pin|R_Green_Pin
+                          |R_Yellow_Pin|B_Red_Pin|B_Green_Pin|B_Yellow_Pin
+                          |L_Red_Pin|L_Green_Pin|L_Yellow_Pin|R_Red_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
