@@ -95,16 +95,16 @@ int main(void)
   while (1)
   {
 		HAL_GPIO_WritePin(GPIOB, T_Red_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, T_Green_Pin, GPIO_PIN_RESET);
+//		HAL_GPIO_WritePin(GPIOB, T_Green_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, T_Yellow_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, B_Red_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, B_Green_Pin, GPIO_PIN_RESET);
+//		HAL_GPIO_WritePin(GPIOB, B_Green_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, B_Yellow_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, L_Red_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, L_Green_Pin, GPIO_PIN_RESET);
+//		HAL_GPIO_WritePin(GPIOB, L_Green_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, L_Yellow_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, R_Red_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, R_Green_Pin, GPIO_PIN_RESET);
+//		HAL_GPIO_WritePin(GPIOB, R_Green_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, R_Yellow_Pin, GPIO_PIN_RESET);
 	  switch (state) {
 			case 0:
