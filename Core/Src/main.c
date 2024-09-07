@@ -47,13 +47,31 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void displayClock(int num){
+	HAL_GPIO_WritePin(GPIOB, H1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H2_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H3_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H4_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H5_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H6_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H7_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H8_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H9_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H10_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H11_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOB, H12_Pin, GPIO_PIN_RESET);
+//	string pin[12] = 	{"H1_Pin", "H2_Pin", "H3_Pin", "H4_Pin", "H5_Pin", "H6_Pin",
+//					"H7_Pin", "H8_Pin", "H9_Pin", "H10_Pin", "H11_Pin", "H12_Pin"};
+//	HAL_GPIO_WritePin(GPIOB, pin[num-1], GPIO_PIN_SET);
 
+}
 /* USER CODE END 0 */
 
 /**
@@ -83,14 +101,19 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int num = 12;
   while (1)
   {
+	  if (num <= 0) num = 12;
+	  displayClock(num--);
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -131,6 +154,36 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, H11_Pin|H12_Pin|H1_Pin|H9_Pin
+                          |H10_Pin|H2_Pin|H3_Pin|H4_Pin
+                          |H5_Pin|H6_Pin|H7_Pin|H8_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : H11_Pin H12_Pin H1_Pin H9_Pin
+                           H10_Pin H2_Pin H3_Pin H4_Pin
+                           H5_Pin H6_Pin H7_Pin H8_Pin */
+  GPIO_InitStruct.Pin = H11_Pin|H12_Pin|H1_Pin|H9_Pin
+                          |H10_Pin|H2_Pin|H3_Pin|H4_Pin
+                          |H5_Pin|H6_Pin|H7_Pin|H8_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
