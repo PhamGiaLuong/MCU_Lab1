@@ -91,55 +91,52 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int state = 0;
+  int count = 10;
   while (1)
   {
-		HAL_GPIO_WritePin(GPIOB, T_Red_Pin, GPIO_PIN_RESET);
-//		HAL_GPIO_WritePin(GPIOB, T_Green_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, T_Yellow_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, B_Red_Pin, GPIO_PIN_RESET);
-//		HAL_GPIO_WritePin(GPIOB, B_Green_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, B_Yellow_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, L_Red_Pin, GPIO_PIN_RESET);
-//		HAL_GPIO_WritePin(GPIOB, L_Green_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, L_Yellow_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, R_Red_Pin, GPIO_PIN_RESET);
-//		HAL_GPIO_WritePin(GPIOB, R_Green_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOB, R_Yellow_Pin, GPIO_PIN_RESET);
-	  switch (state) {
-			case 0:
-				//Horizontal Red light
-				HAL_GPIO_TogglePin(GPIOB, T_Red_Pin);
-				HAL_GPIO_TogglePin(GPIOB, B_Red_Pin);
-				//Vertical Green light
-				HAL_GPIO_TogglePin(GPIOB, L_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOB, R_Green_Pin);
-				HAL_Delay(3000);
-				//Vertical Yellow light
-				HAL_GPIO_TogglePin(GPIOB, L_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOB, R_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOB, L_Yellow_Pin);
-				HAL_GPIO_TogglePin(GPIOB, R_Yellow_Pin);
-				HAL_Delay(2000);
-				state = 1;
-				break;
-			default:
-				//Vertical Red light
-				HAL_GPIO_TogglePin(GPIOB, L_Red_Pin);
-				HAL_GPIO_TogglePin(GPIOB, R_Red_Pin);
-				//Horizontal Green light
-				HAL_GPIO_TogglePin(GPIOB, T_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOB, B_Green_Pin);
-				HAL_Delay(3000);
-				//Horizontal Yellow light
-				HAL_GPIO_TogglePin(GPIOB, T_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOB, B_Green_Pin);
-				HAL_GPIO_TogglePin(GPIOB, T_Yellow_Pin);
-				HAL_GPIO_TogglePin(GPIOB, B_Yellow_Pin);
-				HAL_Delay(2000);
-				state = 0;
-				break;
-	  }
+	  if (count <= 0) count = 10;
+	  switch (count) {
+		case 10:
+			//Horizontal Red light on
+			HAL_GPIO_WritePin(GPIOB, T_Red_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, B_Red_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, L_Red_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, R_Red_Pin, 0);
+			//Vertical Green light on
+			HAL_GPIO_WritePin(GPIOB, L_Green_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, R_Green_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, T_Yellow_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, B_Yellow_Pin, 0);
+			break;
+		case 7:
+			//Vertical Yellow light on
+			HAL_GPIO_WritePin(GPIOB, L_Yellow_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, R_Yellow_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, L_Green_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, R_Green_Pin, 0);
+			break;
+		case 5:
+			//Vertical Red light on
+			HAL_GPIO_WritePin(GPIOB, T_Red_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, B_Red_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, L_Red_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, R_Red_Pin, 1);
+			//Horizontal Green light on
+			HAL_GPIO_WritePin(GPIOB, T_Green_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, B_Green_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, L_Yellow_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, R_Yellow_Pin, 0);
+			break;
+		case 2:
+			//Horizontal Yellow light on
+			HAL_GPIO_WritePin(GPIOB, T_Yellow_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, B_Yellow_Pin, 1);
+			HAL_GPIO_WritePin(GPIOB, T_Green_Pin, 0);
+			HAL_GPIO_WritePin(GPIOB, B_Green_Pin, 0);
+			break;
+	}
+	  count--;
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
