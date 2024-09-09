@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,7 +54,22 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void displayClock(int num){
+const uint16_t pin[12] = {
+    GPIO_PIN_2,  // PB2
+    GPIO_PIN_0,  // PB0
+    GPIO_PIN_10,  // PB10
+    GPIO_PIN_11,  // PB11
+    GPIO_PIN_9,  // PB9
+    GPIO_PIN_4,  // PB4
+    GPIO_PIN_5,  // PB5
+    GPIO_PIN_3,  // PB3
+    GPIO_PIN_7,  // PB7
+    GPIO_PIN_8,  // PB8
+    GPIO_PIN_6,  // PB6
+    GPIO_PIN_1,  // PB1
+    GPIO_PIN_2  // PB2
+};
+void displayClock(int n){
 	HAL_GPIO_WritePin(GPIOB, H1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOB, H2_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOB, H3_Pin, GPIO_PIN_RESET);
@@ -67,10 +82,8 @@ void displayClock(int num){
 	HAL_GPIO_WritePin(GPIOB, H10_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOB, H11_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(GPIOB, H12_Pin, GPIO_PIN_RESET);
-//	string pin[12] = 	{"H1_Pin", "H2_Pin", "H3_Pin", "H4_Pin", "H5_Pin", "H6_Pin",
-//					"H7_Pin", "H8_Pin", "H9_Pin", "H10_Pin", "H11_Pin", "H12_Pin"};
-//	HAL_GPIO_WritePin(GPIOB, pin[num-1], GPIO_PIN_SET);
 
+	HAL_GPIO_WritePin(GPIOB, pin[n], GPIO_PIN_SET);
 }
 /* USER CODE END 0 */
 
@@ -108,11 +121,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int num = 12;
+  int num = 0;
   while (1)
   {
-	  if (num <= 0) num = 12;
-	  displayClock(num--);
+	  if (num >= 12) num = 0;
+	  displayClock(num++);
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
@@ -169,16 +182,16 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, H11_Pin|H12_Pin|H1_Pin|H9_Pin
-                          |H10_Pin|H2_Pin|H3_Pin|H4_Pin
-                          |H5_Pin|H6_Pin|H7_Pin|H8_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, H1_Pin|H11_Pin|H12_Pin|H2_Pin
+                          |H3_Pin|H7_Pin|H5_Pin|H6_Pin
+                          |H10_Pin|H8_Pin|H9_Pin|H4_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : H11_Pin H12_Pin H1_Pin H9_Pin
-                           H10_Pin H2_Pin H3_Pin H4_Pin
-                           H5_Pin H6_Pin H7_Pin H8_Pin */
-  GPIO_InitStruct.Pin = H11_Pin|H12_Pin|H1_Pin|H9_Pin
-                          |H10_Pin|H2_Pin|H3_Pin|H4_Pin
-                          |H5_Pin|H6_Pin|H7_Pin|H8_Pin;
+  /*Configure GPIO pins : H1_Pin H11_Pin H12_Pin H2_Pin
+                           H3_Pin H7_Pin H5_Pin H6_Pin
+                           H10_Pin H8_Pin H9_Pin H4_Pin */
+  GPIO_InitStruct.Pin = H1_Pin|H11_Pin|H12_Pin|H2_Pin
+                          |H3_Pin|H7_Pin|H5_Pin|H6_Pin
+                          |H10_Pin|H8_Pin|H9_Pin|H4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
