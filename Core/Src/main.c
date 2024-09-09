@@ -91,15 +91,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int state = 3;
+  int state = 2;
   HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin, GPIO_PIN_SET);
   while (1)
   {
-	  if (state == 1 || state < 0){
+	  if (state <= 0){
 		  HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin);
 		  HAL_GPIO_TogglePin(GPIOA, LED_YELLOW_Pin);
+		  state = 2;
 	  }
-	  if (state < 0) state = 3;
 	  state--;
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
