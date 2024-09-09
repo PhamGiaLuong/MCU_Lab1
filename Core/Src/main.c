@@ -69,21 +69,8 @@ const uint16_t pin[12] = {
     GPIO_PIN_1,  // PB1
     GPIO_PIN_2  // PB2
 };
-void displayClock(int n){
-	HAL_GPIO_WritePin(GPIOB, H1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H2_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H3_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H4_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H8_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H9_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H10_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H11_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, H12_Pin, GPIO_PIN_RESET);
-
-	HAL_GPIO_WritePin(GPIOB, pin[n], GPIO_PIN_SET);
+void setNumberOnClock(int num){
+	HAL_GPIO_WritePin(GPIOB, pin[num], GPIO_PIN_SET);
 }
 /* USER CODE END 0 */
 
@@ -125,7 +112,7 @@ int main(void)
   while (1)
   {
 	  if (num >= 12) num = 0;
-	  displayClock(num++);
+	  setNumberOnClock(num++);
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
