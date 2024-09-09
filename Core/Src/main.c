@@ -91,24 +91,33 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int count = 10;
   while (1)
   {
+	   if (count <= 0) count = 10;
+	  switch(count){
+	  case 10:
+		  //Red light: 5s
+		  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin, GPIO_PIN_SET);
+		  HAL_GPIO_WritePin(GPIOA, LED_GREEN_Pin, GPIO_PIN_SET);
+		  break;
+	  case 5:
+		  //Green light: 3s
+		  HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin);
+		  HAL_GPIO_TogglePin(GPIOA, LED_GREEN_Pin);
+		  break;
+	  case 2:
+		  //Yellow light: 2s
+		  HAL_GPIO_TogglePin(GPIOA, LED_GREEN_Pin);
+		  HAL_GPIO_TogglePin(GPIOA, LED_YELLOW_Pin);
+		  break;
+	  }
+
+	  count--;
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
-	  //Red light: 5s
-	  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin, GPIO_PIN_RESET);
-	  HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin, GPIO_PIN_SET);
-	  HAL_GPIO_WritePin(GPIOA, LED_GREEN_Pin, GPIO_PIN_SET);
-	  HAL_Delay(5000);
 
-	  //Green light: 3s
-	  HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin);
-	  HAL_GPIO_TogglePin(GPIOA, LED_GREEN_Pin);
-	  HAL_Delay(3000);
-
-	  //Yellow light: 2s
-	  HAL_GPIO_TogglePin(GPIOA, LED_GREEN_Pin);
-	  HAL_GPIO_TogglePin(GPIOA, LED_YELLOW_Pin);
-	  HAL_Delay(2000);
 
 
     /* USER CODE BEGIN 3 */
