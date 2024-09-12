@@ -63,13 +63,38 @@ void display7SEG(int num){
 	HAL_GPIO_WritePin(GPIOA, F_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOA, G_Pin, GPIO_PIN_SET);
 
-	if (num != 1 && num != 4) HAL_GPIO_WritePin(GPIOA, A_Pin, GPIO_PIN_RESET);
-	if (num != 5 && num != 6) HAL_GPIO_WritePin(GPIOA, B_Pin, GPIO_PIN_RESET);
-	if (num != 2) HAL_GPIO_WritePin(GPIOA, C_Pin, GPIO_PIN_RESET);
-	if (num != 1 && num != 4 && num != 7) HAL_GPIO_WritePin(GPIOA, D_Pin, GPIO_PIN_RESET);
-	if (num == 0 || num == 2 || num == 6 || num == 8) HAL_GPIO_WritePin(GPIOA, E_Pin, GPIO_PIN_RESET);
-	if (num != 1 && num != 2 && num != 3 && num != 7) HAL_GPIO_WritePin(GPIOA, F_Pin, GPIO_PIN_RESET);
-	if (num > 1 && num != 7) HAL_GPIO_WritePin(GPIOA, G_Pin, GPIO_PIN_RESET);
+	switch (num) {
+		case 0:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | E_Pin | F_Pin, GPIO_PIN_RESET);
+			break;
+		case 1:
+			HAL_GPIO_WritePin(GPIOA, B_Pin | C_Pin, GPIO_PIN_RESET);
+			break;
+		case 2:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | D_Pin | E_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+		case 3:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+		case 4:
+			HAL_GPIO_WritePin(GPIOA, B_Pin | C_Pin |F_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+		case 5:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | C_Pin | D_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+		case 6:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | C_Pin | D_Pin | E_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+		case 7:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin, GPIO_PIN_RESET);
+			break;
+		case 8:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | E_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+		default:
+			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+			break;
+	}
 }
 /* USER CODE END 0 */
 
