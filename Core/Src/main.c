@@ -67,7 +67,7 @@ const uint16_t pin[12] = {
     GPIO_PIN_8,  // PB8
     GPIO_PIN_6,  // PB6
     GPIO_PIN_1,  // PB1
-    GPIO_PIN_2  // PB2
+//    GPIO_PIN_2  // PB2
 };
 void clearNumberOnClock(int num){
 	HAL_GPIO_WritePin(GPIOB, pin[num], GPIO_PIN_RESET);
@@ -75,6 +75,38 @@ void clearNumberOnClock(int num){
 void setNumberOnClock(int num){
 	HAL_GPIO_WritePin(GPIOB, pin[num], GPIO_PIN_SET);
 }
+//void clearPrint(int state, int *s, int *m, int *h){
+//	switch (state) {
+//		case 0: //Clear second print
+//			if ((*s)/5 != *m || (*s)/5 != *h) clearNumberOnClock((*s)/5);
+//			break;
+//		case 1: //Clear minute print
+//			if ((*s)/5 != *m || *m != *h) clearNumberOnClock(*m);
+//			break;
+//		default://Clear hour print
+//			if ((*s)/5 != *h || *m != *h) clearNumberOnClock(*h);
+//			break;
+//	}
+//}
+void clearAllClock(){
+	HAL_GPIO_WritePin(GPIOB, H1_Pin|H11_Pin|H12_Pin|H2_Pin
+	                          |H3_Pin|H7_Pin|H5_Pin|H6_Pin
+	                          |H10_Pin|H8_Pin|H9_Pin|H4_Pin, GPIO_PIN_RESET);
+}
+void displayTime(int s, int m, int h){
+	setNumberOnClock(m/5);
+	setNumberOnClock(h);
+	setNumberOnClock(s/5);
+}
+void setMH(int *m, int *h){
+	(*m)++;
+	if (*m >= 60) {
+		*m = 0;
+		(*h)++;
+		if (*h >= 12) *h = 0;
+	}
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -111,11 +143,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int num = 0;
+  int s = 0, m = 0, h = 0;
+  int *pm = &m, *ph = &h;
   while (1)
   {
-	  if (num >= 12) num = 0;
-	  displayClock(num++);
+	  clearAllClock();
+	  if (s >= 60) {
+		  s = 0;
+		  setMH(pm, ph);
+	  }
+	  displayTime(s, m, h);
+	  s++;
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
