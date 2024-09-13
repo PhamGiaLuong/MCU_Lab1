@@ -67,7 +67,6 @@ const uint16_t pin[12] = {
     GPIO_PIN_8,  // PB8
     GPIO_PIN_6,  // PB6
     GPIO_PIN_1,  // PB1
-    GPIO_PIN_2  // PB2
 };
 void displayClock(int n){
 	HAL_GPIO_WritePin(GPIOB, H1_Pin, GPIO_PIN_RESET);
