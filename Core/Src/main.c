@@ -94,18 +94,19 @@ void clearAllClock(){
 	                          |H10_Pin|H8_Pin|H9_Pin|H4_Pin, GPIO_PIN_RESET);
 }
 void displayTime(int s, int m, int h){
-	setNumberOnClock(m/5);
-	setNumberOnClock(h);
 	setNumberOnClock(s/5);
+	setNumberOnClock(m/5);
+	if (h >= 12) h -= 12;
+	setNumberOnClock(h);
 }
-void setMH(int *m, int *h){
-	(*m)++;
-	if (*m >= 60) {
-		*m = 0;
-		(*h)++;
-		if (*h >= 12) *h = 0;
-	}
-}
+//void setMH(int *m, int *h){
+//	(*m)++;
+//	if (*m >= 60) {
+//		*m = 0;
+//		(*h)++;
+//		if (*h >= 12) *h = 0;
+//	}
+//}
 
 /* USER CODE END 0 */
 
@@ -143,17 +144,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int s = 0, m = 0, h = 0;
-  int *pm = &m, *ph = &h;
+  int h = 15, m = 3, s = 24;
+//  int *pm = &m, *ph = &h;
   while (1)
   {
 	  clearAllClock();
-	  if (s >= 60) {
-		  s = 0;
-		  setMH(pm, ph);
-	  }
+//	  if (s >= 60) {
+//		  s = 0;
+//		  setMH(pm, ph);
+//	  }
 	  displayTime(s, m, h);
-	  s++;
+//	  s++;
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
