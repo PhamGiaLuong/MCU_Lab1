@@ -138,85 +138,85 @@ void display7SEG(int num){
  80001d4:	08000249 	.word	0x08000249
 
 	switch (num) {
-		case 0:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | E_Pin | F_Pin, GPIO_PIN_RESET);
+	case 0:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | E_Pin | F_Pin, GPIO_PIN_RESET);
  80001d8:	2200      	movs	r2, #0
  80001da:	f44f 517c 	mov.w	r1, #16128	; 0x3f00
  80001de:	4823      	ldr	r0, [pc, #140]	; (800026c <display7SEG+0x120>)
  80001e0:	f000 fc40 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  80001e4:	e03e      	b.n	8000264 <display7SEG+0x118>
-		case 1:
-			HAL_GPIO_WritePin(GPIOA, B_Pin | C_Pin, GPIO_PIN_RESET);
+	case 1:
+		HAL_GPIO_WritePin(GPIOA, B_Pin | C_Pin, GPIO_PIN_RESET);
  80001e6:	2200      	movs	r2, #0
  80001e8:	f44f 61c0 	mov.w	r1, #1536	; 0x600
  80001ec:	481f      	ldr	r0, [pc, #124]	; (800026c <display7SEG+0x120>)
  80001ee:	f000 fc39 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  80001f2:	e037      	b.n	8000264 <display7SEG+0x118>
-		case 2:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | D_Pin | E_Pin | G_Pin, GPIO_PIN_RESET);
+	case 2:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | D_Pin | E_Pin | G_Pin, GPIO_PIN_RESET);
  80001f4:	2200      	movs	r2, #0
  80001f6:	f44f 41b6 	mov.w	r1, #23296	; 0x5b00
  80001fa:	481c      	ldr	r0, [pc, #112]	; (800026c <display7SEG+0x120>)
  80001fc:	f000 fc32 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  8000200:	e030      	b.n	8000264 <display7SEG+0x118>
-		case 3:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | G_Pin, GPIO_PIN_RESET);
+	case 3:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | G_Pin, GPIO_PIN_RESET);
  8000202:	2200      	movs	r2, #0
  8000204:	f44f 419e 	mov.w	r1, #20224	; 0x4f00
  8000208:	4818      	ldr	r0, [pc, #96]	; (800026c <display7SEG+0x120>)
  800020a:	f000 fc2b 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  800020e:	e029      	b.n	8000264 <display7SEG+0x118>
-		case 4:
-			HAL_GPIO_WritePin(GPIOA, B_Pin | C_Pin |F_Pin | G_Pin, GPIO_PIN_RESET);
+	case 4:
+		HAL_GPIO_WritePin(GPIOA, B_Pin | C_Pin |F_Pin | G_Pin, GPIO_PIN_RESET);
  8000210:	2200      	movs	r2, #0
  8000212:	f44f 41cc 	mov.w	r1, #26112	; 0x6600
  8000216:	4815      	ldr	r0, [pc, #84]	; (800026c <display7SEG+0x120>)
  8000218:	f000 fc24 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  800021c:	e022      	b.n	8000264 <display7SEG+0x118>
-		case 5:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | C_Pin | D_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+	case 5:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | C_Pin | D_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
  800021e:	2200      	movs	r2, #0
  8000220:	f44f 41da 	mov.w	r1, #27904	; 0x6d00
  8000224:	4811      	ldr	r0, [pc, #68]	; (800026c <display7SEG+0x120>)
  8000226:	f000 fc1d 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  800022a:	e01b      	b.n	8000264 <display7SEG+0x118>
-		case 6:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | C_Pin | D_Pin | E_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+	case 6:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | C_Pin | D_Pin | E_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
  800022c:	2200      	movs	r2, #0
  800022e:	f44f 41fa 	mov.w	r1, #32000	; 0x7d00
  8000232:	480e      	ldr	r0, [pc, #56]	; (800026c <display7SEG+0x120>)
  8000234:	f000 fc16 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  8000238:	e014      	b.n	8000264 <display7SEG+0x118>
-		case 7:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin, GPIO_PIN_RESET);
+	case 7:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin, GPIO_PIN_RESET);
  800023a:	2200      	movs	r2, #0
  800023c:	f44f 61e0 	mov.w	r1, #1792	; 0x700
  8000240:	480a      	ldr	r0, [pc, #40]	; (800026c <display7SEG+0x120>)
  8000242:	f000 fc0f 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  8000246:	e00d      	b.n	8000264 <display7SEG+0x118>
-		case 8:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | E_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+	case 8:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | E_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
  8000248:	2200      	movs	r2, #0
  800024a:	f44f 41fe 	mov.w	r1, #32512	; 0x7f00
  800024e:	4807      	ldr	r0, [pc, #28]	; (800026c <display7SEG+0x120>)
  8000250:	f000 fc08 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  8000254:	e006      	b.n	8000264 <display7SEG+0x118>
-		default:
-			HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
+	default:
+		HAL_GPIO_WritePin(GPIOA, A_Pin | B_Pin | C_Pin | D_Pin | F_Pin | G_Pin, GPIO_PIN_RESET);
  8000256:	2200      	movs	r2, #0
  8000258:	f44f 41de 	mov.w	r1, #28416	; 0x6f00
  800025c:	4803      	ldr	r0, [pc, #12]	; (800026c <display7SEG+0x120>)
  800025e:	f000 fc01 	bl	8000a64 <HAL_GPIO_WritePin>
-			break;
+		break;
  8000262:	bf00      	nop
 	}
 }
