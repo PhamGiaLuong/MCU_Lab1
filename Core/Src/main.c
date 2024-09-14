@@ -228,7 +228,7 @@ int main(void)
 	  		break;
 	  }
 	  count--;
-	  countTime(timeA, type);timeA--;
+	  countTime(timeA--, type);
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
