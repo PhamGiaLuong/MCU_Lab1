@@ -79,12 +79,6 @@ void clearAllClock(){
 	                          |H3_Pin|H7_Pin|H5_Pin|H6_Pin
 	                          |H10_Pin|H8_Pin|H9_Pin|H4_Pin, GPIO_PIN_RESET);
 }
-void displayTime(int s, int m, int h){
-	setNumberOnClock(s/5);
-	setNumberOnClock(m/5);
-	if (h >= 12) h -= 12;
-	setNumberOnClock(h);
-}
 void setMH(int *m, int *h){
 	(*m)++;
 	if (*m >= 60) {
@@ -93,6 +87,20 @@ void setMH(int *m, int *h){
 		if (*h >= 12) *h -= 12;
 	}
 }
+void displayTime(int s, int m, int h){
+	int giay = s/5;
+	int phut = m/5;
+	if (h >= 12) h -= 12;
+//	if (s-1 != m && s-1 != h) clearNumberOnClock(s-1);
+//	if (m-1 != s && m-1 != h) clearNumberOnClock(m-1);
+//	if (h-1 != s && h-1 != m) clearNumberOnClock(h-1);
+	setNumberOnClock(giay);
+	setNumberOnClock(phut);
+	setNumberOnClock(h);
+}
+//void clearPass(int s, int m, int h){
+//	if (s-m >= 5 ||)
+//}
 
 /* USER CODE END 0 */
 
@@ -132,16 +140,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   int h = 15, m = 3, s = 24;
   int *pm = &m, *ph = &h;
+  clearAllClock();
   while (1)
   {
-	  clearAllClock();
+//	  clearNumberOnClock(s-1);
 	  if (s >= 60) {
 		  s = 0;
 		  setMH(pm, ph);
 	  }
 	  displayTime(s, m, h);
 	  s++;
-	  HAL_Delay(100);
+	  HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
