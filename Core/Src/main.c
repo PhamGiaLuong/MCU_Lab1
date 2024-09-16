@@ -136,8 +136,8 @@ int main(void)
   while (1)
   {
 //	  clearAllClock();
-	  clearNumberOnClock(s);
-	  clearNumberOnClock(m);
+	  clearNumberOnClock(s/5);
+	  clearNumberOnClock(m/5);
 	  clearNumberOnClock(h);
 	  s++;
 	  if (s >= 60) {
@@ -149,7 +149,7 @@ int main(void)
 //		  setMH(pm, ph);
 	  }
 	  if (h >= 12) {
-		  h = 0;
+		  h -= 12;
 //		  setMH(pm, ph);
 	  }
 
