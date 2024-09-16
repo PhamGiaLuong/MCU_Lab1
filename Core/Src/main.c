@@ -88,19 +88,11 @@ void setMH(int *m, int *h){
 	}
 }
 void displayTime(int s, int m, int h){
-	int giay = s/5;
-	int phut = m/5;
+	setNumberOnClock(s/5);
+	setNumberOnClock(m/5);
 	if (h >= 12) h -= 12;
-//	if (s-1 != m && s-1 != h) clearNumberOnClock(s-1);
-//	if (m-1 != s && m-1 != h) clearNumberOnClock(m-1);
-//	if (h-1 != s && h-1 != m) clearNumberOnClock(h-1);
-	setNumberOnClock(giay);
-	setNumberOnClock(phut);
 	setNumberOnClock(h);
 }
-//void clearPass(int s, int m, int h){
-//	if (s-m >= 5 ||)
-//}
 
 /* USER CODE END 0 */
 
@@ -143,14 +135,26 @@ int main(void)
   clearAllClock();
   while (1)
   {
-//	  clearNumberOnClock(s-1);
-	  if (s >= 60) {
-		  s = 0;
-		  setMH(pm, ph);
-	  }
-	  displayTime(s, m, h);
+//	  clearAllClock();
+	  clearNumberOnClock(s);
+	  clearNumberOnClock(m);
+	  clearNumberOnClock(h);
 	  s++;
-	  HAL_Delay(500);
+	  if (s >= 60) {
+		  s = 0;m++;
+//		  setMH(pm, ph);
+	  }
+	  if (m >= 60) {
+		  m = 0;h++;
+//		  setMH(pm, ph);
+	  }
+	  if (h >= 12) {
+		  h = 0;
+//		  setMH(pm, ph);
+	  }
+
+	  displayTime(s, m, h);
+	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
