@@ -135,26 +135,14 @@ int main(void)
   clearAllClock();
   while (1)
   {
-//	  clearAllClock();
-	  clearNumberOnClock(s/5);
-	  clearNumberOnClock(m/5);
-	  clearNumberOnClock(h);
-	  s++;
-	  if (s >= 60) {
-		  s = 0;m++;
-//		  setMH(pm, ph);
-	  }
-	  if (m >= 60) {
-		  m = 0;h++;
-//		  setMH(pm, ph);
-	  }
-	  if (h >= 12) {
-		  h -= 12;
-//		  setMH(pm, ph);
-	  }
-
-	  displayTime(s, m, h);
-	  HAL_Delay(100);
+	    clearAllClock();
+	    if (s >= 60) {
+	        s = 0;
+	        setMH(pm, ph);
+	    }
+	    displayTime(s, m, h);
+	    s++;
+	    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
